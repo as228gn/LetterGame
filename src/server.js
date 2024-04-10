@@ -10,7 +10,11 @@ import expressLayouts from 'express-ejs-layouts'
 import logger from 'morgan'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { connectToDatabase } from './config/mongoose.js'
 import { router } from './routes/router.js'
+
+// Connect to MongoDB.
+await connectToDatabase(process.env.DB_CONNECTION_STRING)
 
 // Get the path of the current module's directory.
 const directoryFullName = dirname(fileURLToPath(import.meta.url))

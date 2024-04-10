@@ -7,10 +7,12 @@
 import express from 'express'
 import http from 'node:http'
 import { router as adminRouter } from './adminRouter.js'
+import { router as gameRouter } from './gameRouter.js'
 
 export const router = express.Router()
 
 router.use('/admin', adminRouter)
+router.use('/', gameRouter)
 
 // Catch 404 (ALWAYS keep this as the last route).
 router.use('*', (req, res, next) => {
