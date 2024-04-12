@@ -1,1 +1,26 @@
 Hello World!
+
+  <table>
+    <thead>
+        <tr>
+            <th>Bild</th>
+            <th>Rätt svar</th>
+            <th>Ta bort</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% for (const image of images) { %>
+        <tr data-id="<%= image.id %>">
+          <td>
+            <img src="./uploads/<%= image.fileName %>" alt="picture">
+          </td>
+          <td>
+            <%= image.correctAnswer %>
+          </td>
+          <td>
+            <a href="admin/<%= image.id %>/delete">Ta bort</a>
+          </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>

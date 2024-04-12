@@ -1,0 +1,8 @@
+<h1>Delete image</h1>
+<form method="post" action="admin/<%= viewData?.id %>/delete">
+  <input type="hidden" name="id" value="<%= viewData?.id %>" />
+  <img src="./uploads/<%= viewData.fileName %>" alt="Picture">
+  <div>
+    <button type="submit">Delete</button>
+  </div>
+</form>
