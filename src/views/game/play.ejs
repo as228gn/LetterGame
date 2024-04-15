@@ -1,4 +1,4 @@
-<img src="./uploads/<%= fileName %>" alt="picture">
+<img src="./uploads/<%= viewData.fileName %>" alt="picture">
 
 <form method="post" action="./game/play">
   <div>
@@ -9,4 +9,11 @@
   </div>
 </form>
 
-<div id="good">BRA!</div>
+<% for (let i = 0; i < viewData.shuffledAnswer.length; i++) { %>
+  <div class="letterContainer" draggable="true"> <%= viewData.shuffledAnswer[i] %> </div>
+<% } %>
+<% for (let i = 0; i < viewData.shuffledAnswer.length; i++) { %>
+  <div class="dropZone"></div>
+<% } %>
+
+<a href="/admin">Admin</a>

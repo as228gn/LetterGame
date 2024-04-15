@@ -73,8 +73,6 @@ export class AdminController {
       correctAnswer,
       fileName
     })
-    console.log(req.file.path)
-    console.log(req.body.correctAnswer)
     res.render('admin/create')
   }
 
@@ -101,14 +99,17 @@ export class AdminController {
    */
   async deletePost (req, res) {
     try {
-
       const image = await ImageModel.findById(req.body.id)
-      console.log(image.fileName)
-      fs.unlink(`${'./upload/'}${image.fileName}`)
+      fs.unlink(`${'./public/uploads/'}${image.fileName}`, (err) => {
+        if (err) {
+          console.error('Fel vid radering av fil:', err)
+          return
+        }
+        console.log('Filen har raderats')
+      })
       await req.doc.deleteOne()
-
       // req.session.flash = { type: 'success', text: 'The image was deleted successfully.' }
-      res.render('admin')
+      res.redirect('..')
     } catch (error) {
       req.session.flash = { type: 'danger', text: error.message }
       res.redirect('admin/delete')
