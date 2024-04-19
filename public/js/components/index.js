@@ -4,11 +4,12 @@ const dropZone = document.querySelectorAll('.dropZone')
 letterDiv.forEach(function (element) {
   element.addEventListener('dragstart', function (event) {
     event.dataTransfer.setData('text/plain', element.textContent)
+    //event.target.classList.add('dragging')
   })
 
-  // element.addEventListener('dragend', function (event) {
-  //   console.log('dragslut')
-  // })
+  element.addEventListener('dragend', function (event) {
+  // event.target.classList.add('dragging')
+  })
 })
 
 dropZone.forEach(function (element) {

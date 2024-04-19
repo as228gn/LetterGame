@@ -13,7 +13,7 @@
       <% for (const image of images) { %>
         <tr data-id="<%= image.id %>">
           <td>
-            <img src="./uploads/<%= image.fileName %>" alt="picture">
+            <img src="<%= image.imageUrl %>" alt="picture">
           </td>
           <td>
             <%= image.correctAnswer %>

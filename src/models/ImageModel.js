@@ -15,7 +15,7 @@ const schema = new mongoose.Schema({
     trim: true,
     minlength: 1
   },
-  fileName: {
+  imageUrl: {
     type: String,
     required: true
   }

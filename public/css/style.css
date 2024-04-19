@@ -28,3 +28,7 @@
   line-height: 100px; /* Centrera vertikalt */
   display: inline-block;
 }
+
+.dragging {
+  opacity: 0;
+}

@@ -26,13 +26,11 @@ export class GameController {
     const shuffle = letters.join('')
 
     const viewData = {
-      fileName: randomImage[0].fileName,
+      imageUrl: randomImage[0].imageUrl,
       correctAnswer: answer,
       shuffledAnswer: shuffle
 
     }
-console.log(answer)
-console.log(req.body.correctAnswer)
     if (req.body.correctAnswer === answer) {
       console.log('rätt')
     }
