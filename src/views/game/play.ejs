@@ -8,12 +8,14 @@
     <button type="submit">Svara</button>
   </div>
 </form>
-
-<% for (let i = 0; i < viewData.shuffledAnswer.length; i++) { %>
-  <div class="letterContainer" draggable="true"> <%= viewData.shuffledAnswer[i] %> </div>
-<% } %>
-<% for (let i = 0; i < viewData.shuffledAnswer.length; i++) { %>
-  <div class="dropZone"></div>
-<% } %>
+  <div class="container">
+    <% for (let i = 0; i < viewData.shuffledAnswer.length; i++) { %>
+      <div class="letterContainer" draggable="true" 
+      id="letter<%= i %>"> <%= viewData.shuffledAnswer[i] %> </div>
+    <% } %>
+    <% for (let i = 0; i < viewData.shuffledAnswer.length; i++) { %>
+      <div class="dropZone"></div>
+    <% } %>
+  </div>
 
 <a href="/admin/login">Admin</a>
