@@ -8,7 +8,7 @@ import { ImageModel } from '../models/ImageModel.js'
  * Encapsulates a controller.
  */
 export class GameController {
-  //correctAnswer
+  // correctAnswer
 
   async index(req, res) {
     res.render('game/index')
@@ -37,5 +37,11 @@ export class GameController {
     // const fileName = randomImage[0].fileName
     // this.correctAnswer = randomImage[0].correctAnswer
     res.render('game/play', { viewData })
+  }
+
+  async checkAnswer(req, res, next) {
+    console.log(req.body.correctAnswer)
+
+    next()
   }
 }
