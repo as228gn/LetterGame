@@ -1,21 +1,23 @@
 <img src="<%= viewData.imageUrl %>" alt="picture">
 
-  <div>
+<letter-element data-shuffledAnswer="<%= viewData.shuffledAnswer %>" data-correctAnswer="<%= viewData.correctAnswer %>"></letter-element>
+
+  <!-- <div>
     <% for (let i = 0; i < viewData.shuffledAnswer.length; i++) { %>
       <div class="letterContainer" draggable="true" 
-      id="letter<%= i %>"> <%= viewData.shuffledAnswer[i] %> </div>
+      id="letter<%= i %>" data-shuffledAnswer="<%= viewData.shuffledAnswer %>" data-correctAnswer="<%= viewData.correctAnswer %>"> <%= viewData.shuffledAnswer[i] %> </div>
     <% } %>
   </div>
   <div id="dropZoneContainer" data-correctAnswer="<%= viewData.correctAnswer %>">
     <% for (let i = 0; i < viewData.shuffledAnswer.length; i++) { %>
       <div class="dropZone"></div>
     <% } %>
-  </div>
+  </div> -->
   <form method="post" action="./game/play">
     <div>
       <input id="correctLetter" class="hide" type="text" name="correctAnswer">
     </div>
     <div>
-      <button id="correctAnswerButton" class="hide" type="submit">Nästa bild</button>
+      <button id="correctAnswerButton" class="hide" type="submit"></button>
     </div>
   </form>

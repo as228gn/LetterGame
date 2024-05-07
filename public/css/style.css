@@ -36,3 +36,11 @@
 .hide {
   display: none;
 }
+
+#correctAnswerButton {
+  width: 200px;
+  height: 150px;
+  background-image: url('../img/smiley-163510_640.jpg');
+  background-size: cover;
+  border: none;
+}

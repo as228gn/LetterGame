@@ -38,10 +38,4 @@ export class GameController {
     // this.correctAnswer = randomImage[0].correctAnswer
     res.render('game/play', { viewData })
   }
-
-  async checkAnswer(req, res, next) {
-    console.log(req.body.correctAnswer)
-
-    next()
-  }
 }
