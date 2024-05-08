@@ -10,10 +10,11 @@ const template = document.createElement('template')
 template.innerHTML = `
 <style>
 .letterDiv {
-  width: 100px; /* Bredden på boxen */
-  height: 100px; /* Höjden på boxen */
+  margin-right: 20px;
+  width: 100%; /* Bredden på boxen */
+  height: 100%; /* Höjden på boxen */
   background-color: #de1a1a; /* Bakgrundsfärg */
-  border: 2px solid #dd0e75; /* Ram med tjocklek och färg */
+  border: 3px solid #dd0e75; /* Ram med tjocklek och färg */
   border-radius: 10px; /* Rundade hörn */
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Skugga */
   font-size: 50px; /* Justera textstorleken */
@@ -25,10 +26,13 @@ template.innerHTML = `
   cursor: move;
 }
 .dropDiv {
+  overflow: hidden;
+  margin-top: 50px;
+  margin-right: 20px;
   width: 100px; /* Bredden på boxen */
   height: 100px; /* Höjden på boxen */
   background-color: #de1a6c; /* Bakgrundsfärg */
-  border: 2px solid #dd0e75; /* Ram med tjocklek och färg */
+  border: 3px solid #de1a1a; /* Ram med tjocklek och färg */
   border-radius: 10px; /* Rundade hörn */
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Skugga */
   font-size: 50px; /* Justera textstorleken */
@@ -43,20 +47,42 @@ template.innerHTML = `
 }
 #correctAnswerButton {
   width: 200px;
-  height: 150px;
+  height: 200px;
   background-image: url('../img/smiley-163510_640.jpg');
   background-size: cover;
   border: none;
+  margin-top: 20px;
+  border-radius: 50%;
+  background-position: center;
+}
+#componentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrera element horisontellt */
+  justify-content: center; /* Centrera element vertikalt */
+}
+.letterDivContainer {
+  margin-right: 20px;
+  width: 100px; /* Bredden på boxen */
+  height: 100px; /* Höjden på boxen */
+  background-color: rgb(239, 211, 89); /* Bakgrundsfärg */
+  border: 3px solid #dd0e75; /* Ram med tjocklek och färg */
+  border-radius: 10px; /* Rundade hörn */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Skugga */
+  display: inline-block;
+  overflow: hidden;
 }
 </style>
-<div id="letterContainer"></div>
-<div id="dropZoneContainer"></div>
-<input id="correctLetter" class="hide" type="text" name="correctAnswer">
-<form method="post" action="./game/play">
-<div>
-  <button id="correctAnswerButton" class="hide" type="submit"></button>
+<div id="componentContainer">
+  <div id="letterContainer"></div>
+  <div id="dropZoneContainer"></div>
+  <input id="correctLetter" class="hide" type="text" name="correctAnswer">
+  <form method="post" action="./game/play">
+  <div>
+    <button id="correctAnswerButton" class="hide" type="submit"></button>
+  </div>
+  </form>
 </div>
-</form>
 `
 
 customElements.define('letter-element',
@@ -73,7 +99,7 @@ customElements.define('letter-element',
     /**
      * Creates an instance of the current type.
      */
-    constructor() {
+    constructor () {
       super()
 
       // Attach a shadow DOM tree to this element and
@@ -91,13 +117,16 @@ customElements.define('letter-element',
     connectedCallback() {
       const shuffledAnswer = this.#letterElement.getAttribute('data-shuffledAnswer')
       for (let i = 0; i < shuffledAnswer.length; i++) {
+        const letterDivContainer = document.createElement('div')
+        letterDivContainer.classList.add('letterDivContainer')
         const letter = document.createElement('div')
         const l = document.createTextNode(shuffledAnswer[i])
         letter.appendChild(l)
         letter.setAttribute('draggable', 'true')
         letter.setAttribute('id', 'letter' + [i])
         letter.classList.add('letterDiv')
-        this.#letterContainer.appendChild(letter)
+        letterDivContainer.appendChild(letter)
+        this.#letterContainer.appendChild(letterDivContainer)
         letter.addEventListener('dragstart', function (event) {
           event.dataTransfer.setData('text', event.target.id)
         })
@@ -141,17 +170,3 @@ customElements.define('letter-element',
     }
   }
 )
-
-//     const letterDivAnswers = document.querySelectorAll('#dropZoneContainer .letterContainer')
-//     const correctAnswer = dropZoneContainer.getAttribute('data-correctAnswer')
-//     answer.value = ''
-
-//     letterDivAnswers.forEach(function (element) {
-//       answer.value += element.textContent.trim()
-//       if (answer.value === correctAnswer) {
-//         const button = document.getElementById('correctAnswerButton');
-
-//         // När du vill visa knappen igen, ta bort klassen "hide"
-//         button.classList.remove('hide')
-//       }
-//     })

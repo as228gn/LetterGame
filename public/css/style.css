@@ -1,46 +1,15 @@
-.letterContainer {
-  width: 100px; /* Bredden på boxen */
-  height: 100px; /* Höjden på boxen */
-  background-color: #de1a1a; /* Bakgrundsfärg */
-  border: 2px solid #dd0e75; /* Ram med tjocklek och färg */
-  border-radius: 10px; /* Rundade hörn */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Skugga */
-  font-size: 50px; /* Justera textstorleken */
-  color: rgb(17, 17, 31); /* Ändra textfärgen */
-  font-family: Arial, sans-serif; /* Justera typsnittet */
-  text-align: center; /* Centrera horisontellt */
-  line-height: 100px; /* Centrera vertikalt */
-  display: inline-block;
-  cursor: move;
+body {
+  background-color: rgb(239, 211, 89);
 }
 
-.dropZone {
-  width: 100px; /* Bredden på boxen */
-  height: 100px; /* Höjden på boxen */
-  background-color: #de1a6c; /* Bakgrundsfärg */
-  border: 2px solid #dd0e75; /* Ram med tjocklek och färg */
-  border-radius: 10px; /* Rundade hörn */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Skugga */
-  font-size: 50px; /* Justera textstorleken */
-  color: rgb(17, 17, 31); /* Ändra textfärgen */
-  font-family: Arial, sans-serif; /* Justera typsnittet */
-  text-align: center; /* Centrera horisontellt */
-  line-height: 100px; /* Centrera vertikalt */
-  display: inline-block;
+#gamePicture {
+  width: 500px;
+  height: 500px;
+  border-radius: 20px;
+  border: 5px solid #dd0e75;
 }
 
-/* .dragging {
-  opacity: 100;
-} */
-
-.hide {
-  display: none;
-}
-
-#correctAnswerButton {
-  width: 200px;
-  height: 150px;
-  background-image: url('../img/smiley-163510_640.jpg');
-  background-size: cover;
-  border: none;
+#adminPicture {
+  width: 500px;
+  height: 500px;
 }
