@@ -13,3 +13,15 @@ body {
   width: 500px;
   height: 500px;
 }
+
+.admin {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+footer {
+  margin-top: 500px;
+  position: sticky;
+  bottom: 5px;
+}

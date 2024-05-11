@@ -12,6 +12,16 @@ import getStream from 'into-stream'
  * Encapsulates a controller.
  */
 export class AdminController {
+  /**
+   * A test function to demonstrate automated testing.
+   *
+   * @param {number} num1 - A number to be added.
+   * @param {number} num2 - A number to be added.
+   * @returns {number} - The added number
+   */
+  sum (num1, num2) {
+    return num1 + num2
+  }
 
   /**
   * Returns a HTML form for login.
@@ -19,7 +29,7 @@ export class AdminController {
   * @param {object} req - Express request object.
   * @param {object} res - Express response object.
   */
-  async login(req, res) {
+  async login (req, res) {
     res.render('admin/login')
   }
 
@@ -104,7 +114,7 @@ export class AdminController {
    * @param {object} res - Express response object.
    * @param {Function} next - Express next middleware function.
    */
-  async findAll(req, res, next) {
+  async findAll (req, res, next) {
     try {
       const images = await ImageModel.find({})
 
@@ -114,11 +124,23 @@ export class AdminController {
     }
   }
 
-  async index(req, res) {
+ /**
+  * Returns a page with the list of all images.
+  *
+  * @param {object} req - Express request object.
+  * @param {object} res - Express response object.
+  */
+  async index (req, res) {
     res.render('admin/index')
   }
 
-  async create(req, res) {
+ /**
+  * Returns a page for loading images.
+  *
+  * @param {object} req - Express request object.
+  * @param {object} res - Express response object.
+  */
+  async create (req, res) {
     res.render('admin/create')
   }
 

@@ -31,11 +31,6 @@ export class GameController {
       shuffledAnswer: shuffle
 
     }
-    if (req.body.correctAnswer === answer) {
-      console.log('rätt')
-    }
-    // const fileName = randomImage[0].fileName
-    // this.correctAnswer = randomImage[0].correctAnswer
     res.render('game/play', { viewData })
   }
 }

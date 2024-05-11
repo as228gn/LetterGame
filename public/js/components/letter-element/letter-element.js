@@ -92,14 +92,11 @@ customElements.define('letter-element',
   class extends HTMLElement {
     #letterContainer
     #dropZoneContainer
-    #dropDiv
     #letterElement
-    #answer
-    #letterDiv
     /**
      * Creates an instance of the current type.
      */
-    constructor () {
+    constructor() {
       super()
 
       // Attach a shadow DOM tree to this element and
@@ -109,8 +106,6 @@ customElements.define('letter-element',
 
       this.#letterContainer = this.shadowRoot.querySelector('#letterContainer')
       this.#dropZoneContainer = this.shadowRoot.querySelector('#dropZoneContainer')
-      this.#dropDiv = this.shadowRoot.querySelectorAll('.dropDiv')
-      this.#letterDiv = this.shadowRoot.querySelectorAll('.letterDiv')
       this.#letterElement = this
     }
 
@@ -149,9 +144,17 @@ customElements.define('letter-element',
 
           const sourceId = event.dataTransfer.getData('text')
           const source = component.shadowRoot.querySelector('#' + sourceId)
+          const origin = source.parentNode
+
+          if (event.currentTarget.innerHTML !== '') {
+            const existingLetterDiv = event.currentTarget.children[0]
+            origin.appendChild(existingLetterDiv)
+            event.currentTarget.appendChild(source)
+          } else {
+            event.currentTarget.appendChild(source)
+          }
 
           // Hämta data från drag-and-drop händelse
-          event.target.appendChild(source)
           const letterDivAnswers = component.shadowRoot.querySelectorAll('#dropZoneContainer .dropDiv')
           const answer = component.shadowRoot.querySelector('#correctLetter')
           answer.value = ''
