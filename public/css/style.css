@@ -14,6 +14,13 @@ body {
   height: 500px;
 }
 
+#finnishPicture {
+  width: 500px;
+  height: 500px;
+  border-radius: 20px;
+  border: 5px solid #dd0e75;
+}
+
 .admin {
   position: absolute;
   top: 0;

@@ -15,3 +15,5 @@ router.get('/', (req, res, next) => controller.index(req, res, next))
 
 router.get('/game/play', (req, res, next) => controller.getRandomImage(req, res, next))
 router.post('/game/play', (req, res, next) => controller.getRandomImage(req, res, next))
+
+router.get('/game/finnish', (req, res, next) => controller.finnish(req, res, next))

@@ -14,19 +14,33 @@ export class GameController {
     res.render('game/index')
   }
 
+  async finnish(req, res) {
+    res.render('game/finnish')
+  }
+
   async getRandomImage(req, res) {
-    // if (req.body.correctAnswer === this.correctAnswer) {
-    //   console.log('Run function for correct answer')
-    // }
-    const randomImage = await ImageModel.aggregate([{ $sample: { size: 1 } }])
-    const answer = randomImage[0].correctAnswer
+    if (req.session.images === undefined) {
+      const allImages = await ImageModel.find()
+      allImages.sort(() => Math.random() - 0.5)
+
+      req.session.images = allImages
+    }
+
+    const image = req.session.images.shift()
+    if (image === null || image === undefined) {
+      res.render('game/finnish')
+      req.session.destroy()
+      return
+    }
+
+    const answer = image.correctAnswer
 
     const letters = answer.split('')
     letters.sort(() => Math.random() - 0.5)
     const shuffle = letters.join('')
 
     const viewData = {
-      imageUrl: randomImage[0].imageUrl,
+      imageUrl: image.imageUrl,
       correctAnswer: answer,
       shuffledAnswer: shuffle
 
