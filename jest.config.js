@@ -3,10 +3,14 @@
  * https://jestjs.io/docs/en/configuration.html
  */
 
-export default {
-  // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: 'v8',
+// export default {
+//   // Indicates which provider should be used to instrument code for coverage
+//   coverageProvider: 'v8',
 
-  // The test environment that will be used for testing
-  testEnvironment: 'node'
+//   // The test environment that will be used for testing
+//   testEnvironment: 'node'
+// }
+
+export default {
+  transform: {}
 }

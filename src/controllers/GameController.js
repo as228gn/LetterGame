@@ -28,8 +28,8 @@ export class GameController {
 
     const image = req.session.images.shift()
     if (image === null || image === undefined) {
-      res.render('game/finnish')
       req.session.destroy()
+      res.redirect('./finnish')
       return
     }
 

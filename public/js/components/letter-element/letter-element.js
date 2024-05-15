@@ -59,7 +59,7 @@ template.innerHTML = `
   display: flex;
   flex-direction: column;
   align-items: center; /* Centrera element horisontellt */
-  justify-content: center; /* Centrera element vertikalt */
+  text-align: center; /* Centrera element vertikalt */
 }
 .letterDivContainer {
   margin-right: 20px;

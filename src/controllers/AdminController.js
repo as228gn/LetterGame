@@ -13,17 +13,6 @@ import getStream from 'into-stream'
  */
 export class AdminController {
   /**
-   * A test function to demonstrate automated testing.
-   *
-   * @param {number} num1 - A number to be added.
-   * @param {number} num2 - A number to be added.
-   * @returns {number} - The added number
-   */
-  sum (num1, num2) {
-    return num1 + num2
-  }
-
-  /**
   * Returns a HTML form for login.
   *
   * @param {object} req - Express request object.

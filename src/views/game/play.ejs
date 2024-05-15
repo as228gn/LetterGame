@@ -1,8 +1,14 @@
 <div class="container">
-  <div class="row justify-content-center align-items-center" style="height:70vh;">
-    <div class="col-md-6 mittcentrerat-innehall">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
       <img id="gamePicture" src="<%= viewData.imageUrl %>" alt="picture">
     </div>
   </div>
+  <div class="row ">
+    <div class="col-12">
+      <letter-element id="letterElement" data-shuffledAnswer="<%= viewData.shuffledAnswer %>" data-correctAnswer="<%= viewData.correctAnswer %>"></letter-element>
+    </div>
+  </div>
 </div>
-<letter-element id="letterElement" data-shuffledAnswer="<%= viewData.shuffledAnswer %>" data-correctAnswer="<%= viewData.correctAnswer %>"></letter-element>
+
+
