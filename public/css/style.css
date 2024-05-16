@@ -15,6 +15,11 @@ body {
 }
 
 #adminPicture {
+  width: 250px;
+  height: 250px;
+}
+
+#deletePicture {
   width: 500px;
   height: 500px;
 }
@@ -32,6 +37,11 @@ body {
   right: 0;
 }
 
+#adminlink {
+  color: black;
+  padding: 10px;
+}
+
 #footerMargin {
  margin-bottom: 100px;
 }
@@ -40,12 +50,12 @@ body {
   color: #dd0e75;
 }
 
-#spelaIgen {
+.customButton {
   background-color: #dd0e75;
   border: none;
 }
 
-#spelaIgen:hover {
+.customButton:hover {
   background-color: #ee82b8;
 }
 
@@ -56,4 +66,8 @@ body {
 
 #indexText {
   font-size: 1.5rem;
+}
+
+.alert {
+  color: #dd0e75;
 }

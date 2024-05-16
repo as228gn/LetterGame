@@ -3,7 +3,6 @@
  * @module gameRouter
  * @author Anna Ståhlberg
  */
-// src/routes/gameRouter.js
 import express from 'express'
 import { GameController } from '../controllers/GameController.js'
 
@@ -13,7 +12,7 @@ const controller = new GameController()
 
 router.get('/', (req, res, next) => controller.index(req, res, next))
 
-router.get('/game/play', (req, res, next) => controller.getRandomImage(req, res, next))
-router.post('/game/play', (req, res, next) => controller.getRandomImage(req, res, next))
+router.get('/game/play', (req, res, next) => controller.play(req, res, next))
+router.post('/game/play', (req, res, next) => controller.play(req, res, next))
 
 router.get('/game/finnish', (req, res, next) => controller.finnish(req, res, next))

@@ -1,5 +1,8 @@
-<div><a id="spelaIgen" class="btn btn-primary btn-lg mt-4" href="./">Spel</a></div>
-<div><a id="spelaIgen" class="btn btn-primary btn-lg mt-4" href="admin/create">Lägg in bild</a></div>
+<div><a class="customButton btn btn-primary btn-lg mt-4" href="./">Spel</a></div>
+<form action="admin/logout" method="post">
+  <button class="customButton btn-primary btn-lg mt-4" type="submit">Logga ut</button>
+</form>
+<div><a class="customButton btn btn-primary btn-lg mt-4" href="admin/create">Lägg in bild</a></div>
 
   <table>
     <thead>
@@ -19,7 +22,7 @@
             <%= image.correctAnswer %>
           </td>
           <td>
-            <a href="admin/<%= image.id %>/delete">Ta bort</a>
+            <a class="customButton btn btn-primary btn-lg mt-4" href="admin/<%= image.id %>/delete">Ta bort</a>
           </td>
         </tr>
         <% } %>

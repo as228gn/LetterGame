@@ -4,7 +4,6 @@
  * @author Anna Ståhlberg
  */
 import { ImageModel } from '../models/ImageModel.js'
-import fs from 'fs'
 import { BlockBlobClient } from '@azure/storage-blob'
 import getStream from 'into-stream'
 
@@ -13,11 +12,11 @@ import getStream from 'into-stream'
  */
 export class AdminController {
   /**
-  * Returns a HTML form for login.
-  *
-  * @param {object} req - Express request object.
-  * @param {object} res - Express response object.
-  */
+   * Returns a HTML form for login.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async login (req, res) {
     res.render('admin/login')
   }
@@ -67,13 +66,36 @@ export class AdminController {
   }
 
   /**
-  * Provide req.doc to the route if :id is present.
-  *
-  * @param {object} req - Express request object.
-  * @param {object} res - Express response object.
-  * @param {Function} next - Express next middleware function.
-  * @param {string} id - The value of the id for the document to load.
-  */
+   * Function that logout a user.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   */
+  async logOut (req, res, next) {
+    try {
+      if (!req.session.username) {
+        const error = new Error('Not Found')
+        error.status = 404
+        throw error
+      }
+      delete req.session.username
+
+      req.session.flash = { type: 'success', text: 'Logout were successfull' }
+      res.redirect('../')
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  /**
+   * Provide req.doc to the route if :id is present.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   * @param {string} id - The value of the id for the document to load.
+   */
   async loadImageDocument (req, res, next, id) {
     try {
       // Get the image document.
@@ -113,32 +135,33 @@ export class AdminController {
     }
   }
 
- /**
-  * Returns a page with the list of all images.
-  *
-  * @param {object} req - Express request object.
-  * @param {object} res - Express response object.
-  */
+  /**
+   * Returns a page with the list of all images.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async index (req, res) {
     res.render('admin/index')
   }
 
- /**
-  * Returns a page for loading images.
-  *
-  * @param {object} req - Express request object.
-  * @param {object} res - Express response object.
-  */
+  /**
+   * Returns a page for loading images.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
   async create (req, res) {
     res.render('admin/create')
   }
 
-  /* async handleError(err, res) {
-    res.status(500)
-    res.render('error', { error: err })
-  } */
-
-  async postCreate(req, res) {
+  /**
+   * Adds a new image to the game.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
+  async postCreate (req, res) {
     const containerName = process.env.AZURE_STORAGE_CONTAINER_NAME
     const identifier = Math.random().toString().replace(/0\./, '')
     const blobName = `${identifier}-${req.file.originalname}`
@@ -167,10 +190,6 @@ export class AdminController {
         }
       ).catch(
         (err) => {
-          /* if (err) {
-            handleError(err);
-            return;
-          } */
           console.log(err)
         })
   }
@@ -181,7 +200,7 @@ export class AdminController {
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.
    */
-  async delete(req, res) {
+  async delete (req, res) {
     try {
       res.render('admin/delete', { viewData: req.doc.toObject() })
     } catch (error) {
@@ -196,18 +215,10 @@ export class AdminController {
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.
    */
-  async deletePost(req, res) {
+  async deletePost (req, res) {
     try {
-      const image = await ImageModel.findById(req.body.id)
-      fs.unlink(`${'./public/uploads/'}${image.fileName}`, (err) => {
-        if (err) {
-          console.error('Fel vid radering av fil:', err)
-          return
-        }
-        console.log('Filen har raderats')
-      })
       await req.doc.deleteOne()
-      // req.session.flash = { type: 'success', text: 'The image was deleted successfully.' }
+      req.session.flash = { type: 'success', text: 'The image was deleted successfully.' }
       res.redirect('..')
     } catch (error) {
       req.session.flash = { type: 'danger', text: error.message }

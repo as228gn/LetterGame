@@ -3,10 +3,8 @@
  * @module adminRouter
  * @author Anna Ståhlberg
  */
-// src/routes/snippetRouter.js
 import express from 'express'
 import { AdminController } from '../controllers/AdminController.js'
-// import { upload } from '../config/multerConfig.js'
 import multer from 'multer'
 
 const inMemoryStorage = multer.memoryStorage()
@@ -23,6 +21,8 @@ router.get('/', controller.authorize, (req, res, next) => controller.findAll(req
 
 router.get('/login', (req, res, next) => controller.login(req, res, next))
 router.post('/login', (req, res, next) => controller.postLogin(req, res, next))
+
+router.post('/logout', (req, res, next) => controller.logOut(req, res, next))
 
 router.get('/create', controller.authorize, controller.create)
 router.post('/create', controller.authorize, uploadStrategy, controller.postCreate)

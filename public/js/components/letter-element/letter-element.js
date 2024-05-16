@@ -11,44 +11,45 @@ template.innerHTML = `
 <style>
 .letterDiv {
   margin-right: 20px;
-  width: 100%; /* Bredden på boxen */
-  height: 100%; /* Höjden på boxen */
-  background-color: #de1a1a; /* Bakgrundsfärg */
-  border: 3px solid #dd0e75; /* Ram med tjocklek och färg */
-  border-radius: 10px; /* Rundade hörn */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Skugga */
-  font-size: 50px; /* Justera textstorleken */
-  color: rgb(17, 17, 31); /* Ändra textfärgen */
-  font-family: Arial, sans-serif; /* Justera typsnittet */
-  text-align: center; /* Centrera horisontellt */
-  line-height: 100px; /* Centrera vertikalt */
+  width: 100%;
+  height: 100%;
+  background-color: #de1a1a;
+  border: 3px solid #dd0e75;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  font-size: 50px;
+  color: rgb(17, 17, 31);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  line-height: 100px;
   display: inline-block;
-  cursor: move;
+  cursor: pointer;
 }
 .dropDiv {
   overflow: hidden;
   margin-top: 50px;
   margin-right: 20px;
-  width: 100px; /* Bredden på boxen */
-  height: 100px; /* Höjden på boxen */
-  background-color: #de1a6c; /* Bakgrundsfärg */
-  border: 3px solid #de1a1a; /* Ram med tjocklek och färg */
-  border-radius: 10px; /* Rundade hörn */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Skugga */
-  font-size: 50px; /* Justera textstorleken */
-  color: rgb(17, 17, 31); /* Ändra textfärgen */
-  font-family: Arial, sans-serif; /* Justera typsnittet */
-  text-align: center; /* Centrera horisontellt */
-  line-height: 100px; /* Centrera vertikalt */
+  width: 100px;
+  height: 100px;
+  background-color: #de1a6c;
+  border: 3px solid #de1a1a;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  font-size: 50px;
+  color: rgb(17, 17, 31);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  line-height: 100px;
   display: inline-block;
 }
+
 .hide {
   display: none;
 }
 #correctAnswerButton {
   width: 200px;
   height: 200px;
-  background-image: url('../img/smiley-163510_640.jpg');
+  background-image: url('../img/smiley.jpg');
   background-size: cover;
   border: none;
   margin-top: 20px;
@@ -58,19 +59,20 @@ template.innerHTML = `
 #componentContainer {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centrera element horisontellt */
-  text-align: center; /* Centrera element vertikalt */
+  align-items: center;
+  text-align: center;
 }
 .letterDivContainer {
-  margin-right: 20px;
-  width: 100px; /* Bredden på boxen */
-  height: 100px; /* Höjden på boxen */
-  background-color: rgb(239, 211, 89); /* Bakgrundsfärg */
-  border: 3px solid #dd0e75; /* Ram med tjocklek och färg */
-  border-radius: 10px; /* Rundade hörn */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Skugga */
-  display: inline-block;
   overflow: hidden;
+  margin-top: 50px;
+  margin-right: 20px;
+  width: 100px;
+  height: 100px;
+  background-color: rgb(239, 211, 89);
+  border: 3px solid #dd0e75;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: inline-block;
 }
 </style>
 <div id="componentContainer">
@@ -96,7 +98,7 @@ customElements.define('letter-element',
     /**
      * Creates an instance of the current type.
      */
-    constructor() {
+    constructor () {
       super()
 
       // Attach a shadow DOM tree to this element and
@@ -109,7 +111,10 @@ customElements.define('letter-element',
       this.#letterElement = this
     }
 
-    connectedCallback() {
+    /**
+     * Just nu ligger all kod o connectedCallback, vilket den inte bör göra.
+     */
+    connectedCallback () {
       const shuffledAnswer = this.#letterElement.getAttribute('data-shuffledAnswer')
       for (let i = 0; i < shuffledAnswer.length; i++) {
         const letterDivContainer = document.createElement('div')

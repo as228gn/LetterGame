@@ -6,8 +6,10 @@ const controller = new AdminController()
 
 const index = controller.index
 const findAll = controller.findAll
+const postLogin = controller.postLogin
 
-// Mocka res.render()
+// Dessa tester har chatGPT skrivit, har varit alldelses för svårt för mig att skriva egna tester till min kod men jag har förstått hur man configuerar koden för att få jest att fungera.//
+
 const mockRender = jest.fn()
 const mockResponses = { render: mockRender }
 
@@ -53,5 +55,47 @@ describe('findAll function', () => {
     expect(ImageModel.find).toHaveBeenCalledWith({})
     expect(mockRenders).not.toHaveBeenCalled() // Förvänta dig att res.render() inte kallas vid fel
     expect(mockNext).toHaveBeenCalledWith(mockError) // Förvänta dig att next() kallas med felet
+  })
+})
+
+describe('postLogin function', () => {
+  // Mock req, res, next
+  let req, res, next
+
+  beforeEach(() => {
+    req = {
+      body: {
+        username: 'testUser',
+        password: 'testPassword'
+      },
+      session: {},
+      sessions: { flash: {} }
+    }
+    res = {
+      redirect: jest.fn()
+    }
+    next = jest.fn()
+  })
+
+  test('should redirect to admin page if username and password are correct', async () => {
+    process.env.USER_NAME = 'testUser'
+    process.env.PASS_WORD = 'testPassword'
+
+    await postLogin(req, res, next)
+
+    expect(req.session.username).toBe('testUser')
+    expect(res.redirect).toHaveBeenCalledWith('/admin')
+  })
+
+  test('should redirect to login page with error message if username or password are incorrect', async () => {
+    process.env.USER_NAME = 'testUser'
+    process.env.PASS_WORD = 'testPassword'
+    req.body.username = 'wrongUsername'
+
+    await postLogin(req, res, next)
+
+    expect(req.session.flash.type).toBe('danger')
+    expect(req.session.flash.text).toBe('Wrong password or username')
+    expect(res.redirect).toHaveBeenCalledWith('./login')
   })
 })
