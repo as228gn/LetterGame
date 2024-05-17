@@ -9,6 +9,7 @@ import express from 'express'
 import expressLayouts from 'express-ejs-layouts'
 import session from 'express-session'
 import logger from 'morgan'
+import helmet from 'helmet'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { connectToDatabase } from './config/mongoose.js'
@@ -26,6 +27,14 @@ const baseURL = process.env.BASE_URL || '/'
 
 // Create Express application.
 const app = express()
+
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    imgSrc: ["'self'", process.env.AZURE_BLOB_STORAGE] // Ersätt med din GitLab-domän
+  }
+})
+)
 
 // Set up a morgan logger using the dev format for log entries.
 app.use(logger('dev'))

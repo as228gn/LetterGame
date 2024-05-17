@@ -17,11 +17,15 @@ body {
 #adminPicture {
   width: 250px;
   height: 250px;
+  border-radius: 20px;
+  border: 5px solid #dd0e75;
 }
 
 #deletePicture {
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  border: 5px solid #dd0e75;
 }
 
 #finnishPicture {
@@ -70,4 +74,22 @@ body {
 
 .alert {
   color: #dd0e75;
+}
+
+.create {
+  margin-top: 100px;
+  border: solid black;
+  width: fit-content;
+}
+
+.createInput {
+  padding: 10px;
+}
+
+#login {
+  padding: 50px;
+}
+
+#listLinks {
+  padding: 50px
 }

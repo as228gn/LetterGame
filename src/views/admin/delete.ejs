@@ -1,8 +1,14 @@
-<h1>Delete image</h1>
-<form method="post" action="admin/<%= viewData?.id %>/delete">
-  <input type="hidden" name="id" value="<%= viewData?.id %>" />
-  <img id="deletePicture" src="<%= viewData.imageUrl %>" alt="Picture">
-  <div>
-    <button type="submit">Delete</button>
+<div class="container">
+  <div class="row justify-content-center align-items-center" style="height:70vh;">
+    <div class="col-md-6 text-center">
+      <h1 class="mb-4 mt-4" id="grattis">Bild att ta bort</h1>
+      <form method="post" action="admin/<%= viewData?.id %>/delete">
+        <input type="hidden" name="id" value="<%= viewData?.id %>" />
+        <img id="deletePicture" src="<%= viewData.imageUrl %>" alt="Picture">
+        <div>
+          <button class="customButton btn-primary btn-lg mt-4" type="submit">Ta bort</button>
+        </div>
+      </form>
+    </div>
   </div>
-</form>
+</div>

@@ -1,30 +1,41 @@
-<div><a class="customButton btn btn-primary btn-lg mt-4" href="./">Spel</a></div>
-<form action="admin/logout" method="post">
-  <button class="customButton btn-primary btn-lg mt-4" type="submit">Logga ut</button>
-</form>
-<div><a class="customButton btn btn-primary btn-lg mt-4" href="admin/create">Lägg in bild</a></div>
+<div id="listLinks" class="container text-center">
+  <div class="row align-items-start">
+    <div class="col"><a class="customButton btn btn-primary btn-lg mt-4" href="./">Spela</a></div>
+    <div class="col">
+      <form action="admin/logout" method="post">
+      <button class="customButton btn-primary btn-lg mt-4" type="submit">Logga ut</button>
+     </form>
+    </div>
+    <div class="col"><a class="customButton btn btn-primary btn-lg mt-4" href="admin/create">Lägg in bild</a></div>
+  </div>
+</div>
 
-  <table>
-    <thead>
-        <tr>
-            <th>Bild</th>
-            <th>Rätt svar</th>
-            <th>Ta bort</th>
-        </tr>
-    </thead>
-    <tbody>
-      <% for (const image of images) { %>
-        <tr data-id="<%= image.id %>">
-          <td>
-            <img id="adminPicture" src="<%= image.imageUrl %>" alt="picture">
-          </td>
-          <td>
-            <%= image.correctAnswer %>
-          </td>
-          <td>
-            <a class="customButton btn btn-primary btn-lg mt-4" href="admin/<%= image.id %>/delete">Ta bort</a>
-          </td>
-        </tr>
-        <% } %>
-    </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Bild</th>
+                <th scope="col">Rätt svar</th>
+                <th scope="col">Ta bort</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% for (const image of images) { %>
+            <tr data-id="<%= image.id %>">
+              <td>
+                <img id="adminPicture" src="<%= image.imageUrl %>" alt="picture">
+              </td>
+              <td>
+                <%= image.correctAnswer %>
+              </td>
+              <td>
+                <a class="customButton btn btn-primary btn-lg mt-4" href="admin/<%= image.id %>/delete">Ta bort</a>
+              </td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    </div>
+  </div>

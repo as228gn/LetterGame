@@ -1,1 +1,1 @@
-import './components/letter-element/index.js'
+import './component/letter-element/index.js'

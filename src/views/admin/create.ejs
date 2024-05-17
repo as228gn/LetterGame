@@ -1,12 +1,19 @@
-<form method="post" action="./admin/create" enctype="multipart/form-data">
-  <div>
-    <input type="file" name="image">
+<div class="container create">
+  <div class="row">
+    <div class="col-lg-6">
+      <form method="post" action="./admin/create" enctype="multipart/form-data">
+        <div class="createInput">
+          <input type="file" name="image">
+        </div>
+        <div class="createInput">
+          <input type="text" name="correctAnswer">
+        </div>
+        <div class="createInput">
+          <button type="submit">Lägg till</button>
+        </div>
+      </form>
+      <a class="createInput" href="admin">Lista bilder</a>
+    </div>
   </div>
-  <div>
-    <input type="text" name="correctAnswer">
-  </div>
-  <div>
-    <button type="submit">Lägg till</button>
-  </div>
-</form>
-<a href="admin">Lista bilder</a>
+  
+  

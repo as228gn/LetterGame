@@ -66,7 +66,7 @@ export class AdminController {
   }
 
   /**
-   * Function that logout a user.
+   * Function that logout admin user.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.
@@ -172,7 +172,7 @@ export class AdminController {
 
     const blobOptions = { blobHTTPHeaders: { blobContentType: 'image/png' } }
 
-    const hostName = 'https://lettergamestorage.blob.core.windows.net'
+    const hostName = process.env.AZURE_BLOB_STORAGE
     const imageUrl = `${hostName}/${containerName}/${blobName}`
 
     blobService.uploadStream(stream, streamLength, 5, blobOptions)
