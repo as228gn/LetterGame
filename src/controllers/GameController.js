@@ -25,33 +25,38 @@ export class GameController {
    * @param {object} res - Express response object.
    */
   async play (req, res) {
-    if (req.session.images === undefined) {
-      const allImages = await ImageModel.find()
-      allImages.sort(() => Math.random() - 0.5)
+    try {
+      if (req.session.images === undefined) {
+        const allImages = await ImageModel.find()
+        allImages.sort(() => Math.random() - 0.5)
 
-      req.session.images = allImages
+        req.session.images = allImages
+      }
+
+      const image = req.session.images.shift()
+      if (image === null || image === undefined) {
+        req.session.destroy()
+        res.redirect('./finnish')
+        return
+      }
+
+      const answer = image.correctAnswer
+
+      const letters = answer.split('')
+      letters.sort(() => Math.random() - 0.5)
+      const shuffle = letters.join('')
+
+      const viewData = {
+        imageUrl: image.imageUrl,
+        correctAnswer: answer,
+        shuffledAnswer: shuffle
+
+      }
+      res.render('game/play', { viewData })
+    } catch (error) {
+      req.session.flash = { type: 'danger', text: 'Something went wrong, please start again' }
+      res.redirect('../')
     }
-
-    const image = req.session.images.shift()
-    if (image === null || image === undefined) {
-      req.session.destroy()
-      res.redirect('./finnish')
-      return
-    }
-
-    const answer = image.correctAnswer
-
-    const letters = answer.split('')
-    letters.sort(() => Math.random() - 0.5)
-    const shuffle = letters.join('')
-
-    const viewData = {
-      imageUrl: image.imageUrl,
-      correctAnswer: answer,
-      shuffledAnswer: shuffle
-
-    }
-    res.render('game/play', { viewData })
   }
 
   /**

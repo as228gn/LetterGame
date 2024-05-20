@@ -157,6 +157,7 @@ export class AdminController {
 
   /**
    * Adds a new image to the game.
+   * Source:https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-nodejs?tabs=managed-identity%2Croles-azure-portal%2Csign-in-azure-cli&pivots=blob-storage-quickstart-scratch
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.
@@ -189,8 +190,9 @@ export class AdminController {
           })
         }
       ).catch(
-        (err) => {
-          console.log(err)
+        (error) => {
+          req.session.flash = { type: 'danger', text: error.message }
+          res.redirect('admin/create')
         })
   }
 

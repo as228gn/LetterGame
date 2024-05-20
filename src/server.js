@@ -62,7 +62,7 @@ app.use(session(sessionOptions))
 
 // Middleware to be executed before the routes.
 app.use((req, res, next) => {
-// Flash messages - survives only a round trip.
+  // Flash messages - survives only a round trip.
   if (req.session.flash) {
     res.locals.flash = req.session.flash
     delete req.session.flash
@@ -79,6 +79,14 @@ app.use('/', router)
 // Error handler.
 app.use((err, req, res, next) => {
   console.error(err)
+
+  // 404 Not Found.
+  if (err.status === 404) {
+    res
+      .status(404)
+      .sendFile(join(directoryFullName, 'views', 'errors', '404.html'))
+    return
+  }
 
   res
     .status(err.status || 500)

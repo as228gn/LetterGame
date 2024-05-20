@@ -1,4 +1,4 @@
 ## LetterGame
 
-A game where you drag the correct letter to the correct place.
+A game intended for children aged around five. Drag the letter to the correct place and press the smileyface.
 

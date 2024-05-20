@@ -112,9 +112,10 @@ customElements.define('letter-element',
     }
 
     /**
-     * Just nu ligger all kod o connectedCallback, vilket den inte bör göra.
+     * At the moment, all code is in connectedCallback, which it shouldn't be.
      */
     connectedCallback () {
+      // Builds all the containers for the letters and make them draggable
       const shuffledAnswer = this.#letterElement.getAttribute('data-shuffledAnswer')
       for (let i = 0; i < shuffledAnswer.length; i++) {
         const letterDivContainer = document.createElement('div')
@@ -127,30 +128,30 @@ customElements.define('letter-element',
         letter.classList.add('letterDiv')
         letterDivContainer.appendChild(letter)
         this.#letterContainer.appendChild(letterDivContainer)
+        // Saves the containing letter during the drag
         letter.addEventListener('dragstart', function (event) {
           event.dataTransfer.setData('text', event.target.id)
         })
       }
       const correctAnswer = this.#letterElement.getAttribute('data-correctAnswer')
       const component = this
-
+      // Builds all the dropzone containers
       for (let i = 0; i < correctAnswer.length; i++) {
         const dropZone = document.createElement('div')
         dropZone.classList.add('dropDiv')
         this.#dropZoneContainer.appendChild(dropZone)
 
         dropZone.addEventListener('dragover', function (event) {
-          // Tillåt droppning
           event.preventDefault()
         })
         dropZone.addEventListener('drop', function (event) {
-          // Förhindra standardbeteendet
           event.preventDefault()
-
+          // Gets the data from the dragged/dropped letter
           const sourceId = event.dataTransfer.getData('text')
           const source = component.shadowRoot.querySelector('#' + sourceId)
           const origin = source.parentNode
 
+          // If the dropzone is empty append the letter else move the currentletter to the original position of the letter now being dropped in the dropzone.
           if (event.currentTarget.innerHTML !== '') {
             const existingLetterDiv = event.currentTarget.children[0]
             origin.appendChild(existingLetterDiv)
@@ -159,17 +160,15 @@ customElements.define('letter-element',
             event.currentTarget.appendChild(source)
           }
 
-          // Hämta data från drag-and-drop händelse
           const letterDivAnswers = component.shadowRoot.querySelectorAll('#dropZoneContainer .dropDiv')
           const answer = component.shadowRoot.querySelector('#correctLetter')
           answer.value = ''
-
+          // Puts the same letters being dropped in a hidden inputfield and when the position of those letters correspond with the correctanswer, show the smileyface.
           letterDivAnswers.forEach(function (element) {
             answer.value += element.textContent.trim()
             if (answer.value === correctAnswer) {
               const button = component.shadowRoot.querySelector('#correctAnswerButton')
 
-              // När du vill visa knappen igen, ta bort klassen "hide"
               button.classList.remove('hide')
             }
           })

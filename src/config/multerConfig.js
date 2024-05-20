@@ -1,6 +1,6 @@
 import multer from 'multer'
 
-// Konfigurera multer för att spara uppladdade filer i en mapp
+// Configure multer to save uploaded files in a folder.
 const storage = multer.diskStorage({
   /**
    * Destination.
