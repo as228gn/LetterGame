@@ -54,7 +54,7 @@ export class GameController {
       }
       res.render('game/play', { viewData })
     } catch (error) {
-      req.session.flash = { type: 'danger', text: 'Something went wrong, please start again' }
+      req.session.flash = { type: 'danger', text: 'Something went wrong, please try again' }
       res.redirect('../')
     }
   }

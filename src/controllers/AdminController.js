@@ -56,8 +56,8 @@ export class AdminController {
       if (req.session.username) {
         next()
       } else {
-        const error = new Error('Not found')
-        error.status = 404
+        const error = new Error('Forbidden')
+        error.status = 403
         throw error
       }
     } catch (error) {
@@ -157,11 +157,11 @@ export class AdminController {
 
   /**
    * Adds a new image to the game.
-   * Source:https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-nodejs?tabs=managed-identity%2Croles-azure-portal%2Csign-in-azure-cli&pivots=blob-storage-quickstart-scratch
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.
    */
+  // Source: https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-nodejs?tabs=managed-identity%2Croles-azure-portal%2Csign-in-azure-cli&pivots=blob-storage-quickstart-scratch
   async postCreate (req, res) {
     const containerName = process.env.AZURE_STORAGE_CONTAINER_NAME
     const identifier = Math.random().toString().replace(/0\./, '')

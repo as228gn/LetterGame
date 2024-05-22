@@ -80,6 +80,14 @@ app.use('/', router)
 app.use((err, req, res, next) => {
   console.error(err)
 
+  // 403 Forbidden.
+  if (err.status === 403) {
+    res
+      .status(403)
+      .sendFile(join(directoryFullName, 'views', 'errors', '403.html'))
+    return
+  }
+
   // 404 Not Found.
   if (err.status === 404) {
     res
@@ -89,8 +97,12 @@ app.use((err, req, res, next) => {
   }
 
   res
-    .status(err.status || 500)
-    .send(err.message || 'Internal Server Error')
+    .status(500)
+    .sendFile(join(directoryFullName, 'views', 'errors', '500.html'))
+
+  // res
+  //   .status(err.status || 500)
+  //   .send(err.message || 'Internal Server Error')
 })
 
 // Starts the HTTP server listening for connections.
