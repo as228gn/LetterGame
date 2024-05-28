@@ -45,7 +45,7 @@ export class AdminController {
   }
 
   /**
-   * Function for authorisation.
+   * Function for authorization.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.

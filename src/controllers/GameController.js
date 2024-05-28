@@ -1,6 +1,6 @@
 /**
- * @file Defines the AdminController class.
- * @module AdminController
+ * @file Defines the GameController class.
+ * @module GameController
  * @author Anna Ståhlberg
  */
 import { ImageModel } from '../models/ImageModel.js'

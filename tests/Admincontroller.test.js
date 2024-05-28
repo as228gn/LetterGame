@@ -8,7 +8,7 @@ const index = controller.index
 const findAll = controller.findAll
 const postLogin = controller.postLogin
 
-// Dessa tester har chatGPT skrivit, har varit alldelses för svårt för mig att skriva egna tester till min kod men jag har förstått hur man configuerar koden för att få jest att fungera.//
+// Dessa tester har chatGPT skrivit, har varit alldelses för svårt för mig att skriva egna tester till min kod men jag har förstått hur man configurerar koden för att få jest att fungera.//
 
 const mockRender = jest.fn()
 const mockResponses = { render: mockRender }
